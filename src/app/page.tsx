@@ -144,7 +144,7 @@ function TrialForm({ id }: { id?: string }) {
     setSubmitted(true);
   }
 
-  const inputCls = "w-full text-[14px] border border-stone-200 rounded-md px-4 py-3 text-stone-800 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600/20 placeholder:text-stone-400 bg-white";
+  const inputCls = "w-full text-[15px] border border-stone-200 rounded-md px-4 py-3.5 text-stone-800 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600/20 placeholder:text-stone-400 bg-white";
   const labelCls = "text-[11px] uppercase tracking-[0.12em] text-stone-500 font-semibold block mb-1.5";
 
   if (submitted) {
@@ -283,7 +283,7 @@ export default function HomePage() {
             >
               <div className="relative">
                 {/* Glow behind the card */}
-                <div className="absolute -inset-4 rounded-xl bg-green-100/40 blur-2xl" />
+                <div className="absolute -inset-4 rounded-md bg-green-100/40 blur-2xl" />
 
                 <div className="relative bg-white border border-stone-200 overflow-hidden" style={{ borderRadius: "6px" }}>
                   {/* Top bar — mimics app chrome */}
@@ -305,9 +305,9 @@ export default function HomePage() {
                         { label: "Risks", value: "23", color: "#dc2626", sub: "4 critical" },
                       ].map(({ label, value, color, sub }) => (
                         <div key={label} className="border border-stone-200 rounded p-3">
-                          <p className="text-[9px] font-semibold uppercase tracking-wider text-stone-400 mb-1">{label}</p>
+                          <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400 mb-1">{label}</p>
                           <p className="text-xl font-bold" style={{ color, fontFamily: "var(--font-playfair), Georgia, serif" }}>{value}</p>
-                          <p className="text-[9px] text-stone-400 mt-1">{sub}</p>
+                          <p className="text-[10px] text-stone-400 mt-1">{sub}</p>
                         </div>
                       ))}
                     </div>
@@ -349,7 +349,7 @@ export default function HomePage() {
                         <div key={i} className={`h-4 rounded-sm ${cls}`} />
                       ))}
                     </div>
-                    <p className="text-[8px] text-stone-300 mt-1 text-center uppercase tracking-widest">Risk Heat Map — Likelihood vs Impact</p>
+                    <p className="text-[10px] text-stone-300 mt-1 text-center uppercase tracking-widest">Risk Heat Map — Likelihood vs Impact</p>
                   </div>
                 </div>
               </div>
@@ -481,7 +481,7 @@ export default function HomePage() {
         {/* ── PRICING ───────────────────────────────────────────────────────── */}
         <section id="pricing" className="border-t border-stone-200 bg-stone-50">
           <div className="mx-auto max-w-[1200px] px-6 py-20 md:py-24">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} className="mb-12">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} className="mb-12 text-center">
               <p className="text-[11px] font-semibold tracking-[0.15em] mb-4" style={{ color: "#15803d", textTransform: "uppercase" }}>Pricing</p>
               <h2 className="text-3xl md:text-4xl font-bold text-stone-900" style={{ fontFamily: "var(--font-playfair), Georgia, serif", letterSpacing: "-0.03em" }}>
                 Two plans. No hidden fees.
@@ -540,7 +540,7 @@ export default function HomePage() {
 
         {/* ── GET STARTED / TRIAL FORM ──────────────────────────────────────── */}
         <section id="get-started" className="border-t border-stone-200">
-          <div className="mx-auto max-w-[600px] px-6 py-20 md:py-24">
+          <div className="mx-auto max-w-[720px] px-6 py-20 md:py-24">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp}>
               <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-3 text-center" style={{ fontFamily: "var(--font-playfair), Georgia, serif", letterSpacing: "-0.03em" }}>
                 Get early access to ArborGRC.

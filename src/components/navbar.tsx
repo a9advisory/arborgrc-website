@@ -18,16 +18,17 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-stone-200">
       <div className="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between gap-8">
         {/* Logo — 20% larger */}
-        <Link href="/" className="flex items-center gap-3 shrink-0">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/logo.png"
             alt="ArborGRC logo"
-            width={38}
-            height={38}
+            width={42}
+            height={42}
             priority
+            className="rounded"
           />
           <span
-            className="text-xl"
+            className="text-[22px]"
             style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
           >
             <span className="text-stone-900 font-semibold">Arbor</span>
