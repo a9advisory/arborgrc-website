@@ -121,14 +121,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href="mailto:info@arborgrc.com"
-                  className="text-sm hover:text-white transition-colors duration-150"
-                >
-                  info@arborgrc.com
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -138,7 +130,7 @@ export default function Footer() {
       <div className="border-t border-stone-800">
         <div className="mx-auto max-w-[1200px] px-6 py-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-stone-500">
-            Built with care in Dubai &amp; Bangalore
+            &copy; {new Date().getFullYear()} ArborGRC
           </p>
         </div>
       </div>

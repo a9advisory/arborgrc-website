@@ -171,17 +171,17 @@ function TrialForm({ id }: { id?: string }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelCls}>Full Name *</label>
-          <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Amit Verma" className={inputCls} />
+          <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your full name" className={inputCls} />
         </div>
         <div>
           <label className={labelCls}>Work Email *</label>
-          <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="amit@yourcompany.com" className={inputCls} />
+          <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" className={inputCls} />
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelCls}>Company Name *</label>
-          <input type="text" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="A9 Advisory" className={inputCls} />
+          <input type="text" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Your company name" className={inputCls} />
         </div>
         <div>
           <label className={labelCls}>Your Role</label>
@@ -487,7 +487,7 @@ export default function HomePage() {
                 Two plans. No hidden fees.
               </h2>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[800px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[800px] mx-auto">
               {/* Free */}
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={stagger(0)}
                 className="bg-white border border-stone-200 p-7 flex flex-col" style={{ borderRadius: "4px" }}
