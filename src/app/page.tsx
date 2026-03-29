@@ -128,23 +128,42 @@ function TrialForm({ id }: { id?: string }) {
   });
   const [error, setError] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.company.trim()) {
       setError("Please fill in your name, work email, and company name.");
       return;
     }
-    // Validate work email (no gmail, yahoo, hotmail, outlook personal)
     const personal = /(gmail|yahoo|hotmail|outlook|aol|icloud|mail)\./i;
     if (personal.test(form.email)) {
       setError("Please use your work email address.");
       return;
     }
     setError("");
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error || "Something went wrong. Please try again.");
+        setSubmitting(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please try again.");
+      setSubmitting(false);
+    }
   }
 
-  const inputCls = "w-full text-[15px] border border-stone-200 rounded-md px-4 py-3.5 text-stone-800 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600/20 placeholder:text-stone-400 bg-white";
+  const inputCls = "w-full text-[15px] border border-stone-200 rounded-md px-4 py-3.5 text-stone-800 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600/20 placeholder:text-stone-400 bg-white appearance-none";
+  const selectCls = inputCls + " pr-10 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23a8a29e%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:16px] bg-[right_12px_center] bg-no-repeat cursor-pointer";
   const labelCls = "text-[11px] uppercase tracking-[0.12em] text-stone-500 font-semibold block mb-1.5";
 
   if (submitted) {
@@ -185,7 +204,7 @@ function TrialForm({ id }: { id?: string }) {
         </div>
         <div>
           <label className={labelCls}>Your Role</label>
-          <select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className={inputCls}>
+          <select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className={selectCls}>
             <option value="">Select role</option>
             <option value="ciso">CISO / IS Manager</option>
             <option value="compliance">Compliance Analyst / Officer</option>
@@ -200,7 +219,7 @@ function TrialForm({ id }: { id?: string }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelCls}>Team Size</label>
-          <select value={form.teamSize} onChange={(e) => setForm({ ...form, teamSize: e.target.value })} className={inputCls}>
+          <select value={form.teamSize} onChange={(e) => setForm({ ...form, teamSize: e.target.value })} className={selectCls}>
             <option value="">Select size</option>
             <option value="1-5">1–5 people</option>
             <option value="6-20">6–20 people</option>
@@ -215,13 +234,14 @@ function TrialForm({ id }: { id?: string }) {
       </div>
       <button
         type="submit"
-        className="w-full flex items-center justify-center gap-2 h-12 text-[15px] font-semibold text-white transition-colors duration-150"
+        disabled={submitting}
+        className="w-full flex items-center justify-center gap-2 h-12 text-[15px] font-semibold text-white transition-colors duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
         style={{ backgroundColor: "#15803d", borderRadius: "4px" }}
-        onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#166534")}
-        onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#15803d")}
+        onMouseEnter={(e) => { if (!submitting) (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#166534"; }}
+        onMouseLeave={(e) => { if (!submitting) (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#15803d"; }}
       >
         <Send size={16} />
-        Request Early Access
+        {submitting ? "Submitting..." : "Request Early Access"}
       </button>
       <p className="text-[12px] text-stone-400 text-center">
         No credit card required. Our team will set up your workspace within 24 hours.
