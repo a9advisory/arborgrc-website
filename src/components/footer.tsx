@@ -127,8 +127,28 @@ export default function Footer() {
       <div className="border-t border-stone-800">
         <div className="mx-auto max-w-[1200px] px-6 py-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-stone-500">
-            &copy; {new Date().getFullYear()} ArborGRC
+            &copy; {new Date().getFullYear()} A9 Advisory FZ-LLC. All rights reserved.
           </p>
+          <div className="flex gap-5">
+            <Link
+              href="/privacy"
+              className="text-xs text-stone-500 hover:text-stone-300 transition-colors duration-150"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-xs text-stone-500 hover:text-stone-300 transition-colors duration-150"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/cookies"
+              className="text-xs text-stone-500 hover:text-stone-300 transition-colors duration-150"
+            >
+              Cookie Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
