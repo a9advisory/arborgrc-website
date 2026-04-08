@@ -115,14 +115,6 @@ export default function CookiePolicyPage() {
         </p>
       </Section>
 
-      <Section title="7. Contact">
-        <p>For questions about our use of cookies:</p>
-        <div className="border border-stone-200 rounded-[4px] p-4 bg-white mt-3">
-          <p className="text-sm"><strong>A9 Advisory FZ-LLC</strong></p>
-          <p className="text-sm text-stone-500">Email: privacy@a9advisory.com</p>
-          <p className="text-sm text-stone-500">Website: a9advisory.com</p>
-        </div>
-      </Section>
     </article>
   );
 }
